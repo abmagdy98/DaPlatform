@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DaPlatform.Models.Image>
+
+@{
+    ViewBag.Title = "Image";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Images</h2>
+
+<p>
+    @Html.ActionLink("New Image", "New", "Images", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Push an Image", "GoToPush", "Images", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@Html.ActionLink(item.ID, "Edit", "Images", new { id = item.ID }, null)</td>
+        <td>@item.Name</td>
+        <td>@Html.ActionLink("PULL", "GoToPull", "Images", new { id = item.ID }, null)</td>
+    </tr>
+    }
+</table>

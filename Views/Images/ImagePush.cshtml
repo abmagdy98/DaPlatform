@@ -1,0 +1,29 @@
+﻿@model DaPlatform.Models.ImagePushFormViewModel
+@{
+    ViewBag.Title = "ImagePush";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ImagePush</h2>
+
+@using (Html.BeginForm("Push", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors.")
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="form-group">
+        @Html.Label("Upload Image")
+        <input type="file" accept=".tar" name="upload"/>
+    </div>
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Push</button>
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

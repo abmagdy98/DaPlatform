@@ -1,0 +1,25 @@
+﻿@model DaPlatform.Models.Image
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Image Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Image ID</dt>
+        <dd>@Html.DisplayFor(model => model.ID)</dd>
+        <dt>Image Name</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+        <dt>Secured</dt>
+        <dd>@Html.DisplayFor(model => model.isEncrypted)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

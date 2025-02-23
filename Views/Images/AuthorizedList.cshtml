@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DaPlatform.Models.ImageUser>
+
+@{
+    ViewBag.Title = "AuthorizedList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AuthorizedList</h2>
+
+<p>
+    @Html.ActionLink("Push an Image", "GoToPush", "Images", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.userFullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imageID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.userFullName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.imageName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.imageID)
+    </td>
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+        @Html.ActionLink("Pull", "GoToPull", "Images", new { id = item.imageID }, null)
+        @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+    </td>
+</tr>
+}
+
+</table>

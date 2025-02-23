@@ -1,0 +1,63 @@
+﻿@model DaPlatform.Models.ImageFormViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+
+@using (Html.BeginForm("Save", "Images"))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors.")
+    <div class="form-group">
+        @Html.LabelFor(m => m.ID)
+        @Html.TextBoxFor(m => m.ID, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ID)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.adminPrivateKey)
+        @Html.TextAreaFor(m => m.adminPrivateKey, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.adminPrivateKey)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                Full Name
+            </th>
+            <th>
+                Username
+            </th>
+            <th>
+                User Authorization
+            </th>
+        </tr>
+        @for (int i = 0; i < Model.Users.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Model.Users[i].FullName
+                </td>
+                <td>
+                    @Model.Users[i].UserName
+                </td>
+                <td>
+                    @Html.CheckBoxFor(m => m.isAuthorized[i])
+                </td>
+
+            </tr>
+        }
+    </table>
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
